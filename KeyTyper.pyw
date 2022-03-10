@@ -140,19 +140,16 @@ def common_operations():
     time.sleep(2)
     while True:
         if keyboard.is_pressed('ctrl+1'):
-            print("PRESSED ctrl+1")
             operazione_1()
         else:
             pass
 
         if keyboard.is_pressed('ctrl+2'):
-            print("PRESSED ctrl+2")
             operazione_2()
         else:
             pass
 
         if keyboard.is_pressed('ctrl+3'):
-            print("PRESSED ctrl+3")
             operazione_3()
         else:
             pass
@@ -160,8 +157,7 @@ def common_operations():
 def main():
     while True:
         # 192.168.10.0 R1
-        if keyboard.is_pressed('ctrl+1+9+r'):
-            print("PRESSED ctrl+1+9+r")
+        if keyboard.is_pressed('ctrl+b'):
 
             # same as default
             common_operations()
@@ -170,7 +166,6 @@ def main():
 
         # 192.168.10.0 RT
         if keyboard.is_pressed('ctrl+1+9+r+t'):
-            print("PRESSED ctrl+1+9+r+t")
 
             # change only hostname, ip are the same
             conf_pcA[3] = 'hostname Central-RT'
@@ -181,8 +176,7 @@ def main():
             pass
 
         # 209.165.201.0 RT
-        if keyboard.is_pressed('ctrl+2+0+r+t'):
-            print("PRESSED ctrl+2+0+r+t")
+        if keyboard.is_pressed('ctrl+c'):
 
             # change ip and hostame
             conf_pcA[3] = 'hostname Central-RT'
@@ -205,8 +199,7 @@ def main():
             pass
 
         # 172.16.1.0 A
-        if keyboard.is_pressed('ctrl+1+7+a'):
-            print("PRESSED ctrl+1+7+a")
+        if keyboard.is_pressed('ctrl+a'):
 
             # change ip and hostame
             conf_pcA[3] = 'hostname Router-A'
@@ -230,7 +223,6 @@ def main():
 
         # 172.16.1.0 R1
         if keyboard.is_pressed('ctrl+1+7+r'):
-            print("PRESSED ctrl+1+7+r")
 
             # hostame are same change ip           
             conf_pcA[7] = 'ip address 172.16.1.65 255.255.255.224'
@@ -252,7 +244,6 @@ def main():
 
         # 192.168.10.0 A
         if keyboard.is_pressed('ctrl+1+9+a'):
-            print("PRESSED ctrl+1+9+a")
 
             # change ip and hostame
             conf_pcA[3] = 'hostname Router-A'
