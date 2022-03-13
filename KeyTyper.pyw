@@ -1,12 +1,12 @@
 import pyautogui
-import keyboard
+import keyboard, msvcrt
 import time
 
 # PC-A configuration so it is the configuration of the ROUTER
 # 192.168.10.0 R1 is default array
 conf_pcA = [
     'enable', 
-    'configure terminal ', 
+    'configure terminal', 
     'no ip domain-lookup', 
     'hostname R1', # to change ID 3
     'banner motd #Unauthorized access to this device is prohibited!#',
@@ -20,7 +20,7 @@ conf_pcA = [
     'interface g0/0/1', 
     'description Connect to Subnet A', 
     'ip address 192.168.10.1 255.255.255.128', # to change ID 12
-    'no shutdown ', 
+    'no shutdown', 
     'exit', 
 
     'enable secret NoOneShouldKnow', 
@@ -100,17 +100,54 @@ conf_ip = [
     '192.168.10.129' # to change ID 5
     ]
 
-def operazione_1():
-    for word in conf_pcA:
-        x = True
-        while x:
-            if keyboard.read_key() == "0":
-                x = False
-            else:
-                pass
+keys = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "x",
+    "y",
+    "z",
+    ]
 
-        pyautogui.press("backspace")
-        pyautogui.typewrite(word)
+def any_key_is_pressed():
+    while True:
+         for key in keys:
+            if keyboard.is_pressed(key):
+                return True
+
+def operazione_1():
+    time.sleep(1)
+
+    for word in conf_pcA:
+        print("word -> " + word) # debug
+        pyautogui.press("enter")
+
+        for char in word:
+            if any_key_is_pressed():              
+                print("Detected Press") # debug
+                pyautogui.press("backspace")
+                pyautogui.typewrite(char)  
+                print("Char -> " + char) # debug                   
+
 
 def operazione_2():
     for word in conf_pcB:
@@ -140,6 +177,7 @@ def common_operations():
     time.sleep(2)
     while True:
         if keyboard.is_pressed('ctrl+1'):
+            print("Pressed ctrl+1") # debug
             operazione_1()
         else:
             pass
@@ -157,7 +195,7 @@ def common_operations():
 def main():
     while True:
         # 192.168.10.0 R1
-        if keyboard.is_pressed('ctrl+b'):
+        if keyboard.is_pressed('ctrl+1+9+r'):
 
             # same as default
             common_operations()
@@ -165,7 +203,7 @@ def main():
             pass
 
         # 192.168.10.0 RT
-        if keyboard.is_pressed('ctrl+1+9+r+t'):
+        if keyboard.is_pressed('ctrl+1+9+t'):
 
             # change only hostname, ip are the same
             conf_pcA[3] = 'hostname Central-RT'
@@ -176,7 +214,7 @@ def main():
             pass
 
         # 209.165.201.0 RT
-        if keyboard.is_pressed('ctrl+c'):
+        if keyboard.is_pressed('ctrl+2+0+t'):
 
             # change ip and hostame
             conf_pcA[3] = 'hostname Central-RT'
@@ -199,7 +237,7 @@ def main():
             pass
 
         # 172.16.1.0 A
-        if keyboard.is_pressed('ctrl+a'):
+        if keyboard.is_pressed('ctrl+1+7+a'):
 
             # change ip and hostame
             conf_pcA[3] = 'hostname Router-A'
